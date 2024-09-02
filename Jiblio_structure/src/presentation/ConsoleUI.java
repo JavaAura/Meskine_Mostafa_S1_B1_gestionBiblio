@@ -1,34 +1,45 @@
 package presentation;
 
+import metier.Bibliotheque;
+import metier.Livre;
+import metier.Magazine;
+
 import java.util.Scanner;
 
 public class ConsoleUI {
-    public ConsoleUI(){
-        while (true){
+    public ConsoleUI() {
+        while (true) {
             this.mainMenu();
+            Bibliotheque biblio = new Bibliotheque();
             Scanner input = new Scanner(System.in);
             int choix = input.nextInt();
-            switch (choix){
-                case 1: this.typeMenu();
-                    int choixType = input.nextInt();
-                    this.documentType(choixType);
+            switch (choix) {
+                case 1:
+                    this.typeMenu("Ajouter");
+                    int ajouterType = input.nextInt();
+                    this.documentType(ajouterType, "ajouter");
                     break;
-                case 2: this.typeMenu();
+                case 2:
+                    this.typeMenu("Emprunter");
+                    int emprunterType = input.nextInt();
+                    this.documentType(emprunterType, "emprunter");
                     break;
-                case 3: this.typeMenu();
+                case 3:
+                    this.typeMenu("Retourner");
                     break;
                 case 4:
-                    System.out.println("toute est affiche!");
+                    biblio.afficherTout();
                     break;
                 case 5:
                     System.out.println("search");
                     break;
-                case 6: return;
+                case 6:
+                    return;
             }
         }
     }
 
-    public void mainMenu(){
+    public void mainMenu() {
         System.out.println("1.Ajouter un document");
         System.out.println("2.Emprunter un document");
         System.out.println("3.Retourner un document");
@@ -38,14 +49,97 @@ public class ConsoleUI {
         System.out.print("=> ");
     }
 
-    public void typeMenu(){
-        System.out.println("1.Ajouter un Livre");
-        System.out.println("2.Ajouter un Magazine");
+    public void typeMenu(String action) {
+        System.out.println("1."+ action +" un Livre");
+        System.out.println("2."+ action +" un Magazine");
         System.out.print("=> ");
     }
 
-    public void documentType(int a){
+    public void addMenu(String type) {
+        Scanner input = new Scanner(System.in);
+        Bibliotheque biblio = new Bibliotheque();
+        if (type.equals("livre")) {
+            Livre livre = new Livre();
 
+            System.out.print("1.titre du livre: ");
+            String titre = input.nextLine();
+            livre.setTitre(titre);
+
+            System.out.print("2.ISBN: ");
+            int isbn = input.nextInt();
+            livre.setISBN(isbn);
+            input.nextLine();
+
+            System.out.print("3.nom de l'auteur: ");
+            String auteur = input.nextLine();
+            livre.setAuteur(auteur);
+
+            System.out.print("4.date de publication: ");
+            String date = input.nextLine();
+            livre.setDatePublication(date);
+
+            System.out.print("5.nombre de pages: ");
+            int nombreDePages = input.nextInt();
+            livre.setNombreDePages(nombreDePages);
+            livre.setBorrowed(false);
+
+            biblio.ajouter(livre);
+        } else {
+            Magazine magazine = new Magazine();
+
+            System.out.print("1.titre du magazine: ");
+            String titre = input.nextLine();
+            magazine.setTitre(titre);
+
+            System.out.print("2.numero de magazine: ");
+            int numero = input.nextInt();
+            magazine.setNumero(numero);
+            input.nextLine();
+
+            System.out.print("3.nom de l'auteur: ");
+            String auteur = input.nextLine();
+            magazine.setAuteur(auteur);
+
+            System.out.print("4.date de publication: ");
+            String date = input.nextLine();
+            magazine.setDatePublication(date);
+
+            System.out.print("5.nombre de pages: ");
+            int nombreDePages = input.nextInt();
+            magazine.setNombreDePages(nombreDePages);
+            magazine.setBorrowed(false);
+
+            biblio.ajouter(magazine);
+        }
+    }
+
+    public void documentType(int docType, String operation) {
+        if (operation.equals("ajouter")) {
+            switch (docType) {
+                case 1:
+                    this.addMenu("livre");
+                    break;
+                case 2:
+                    this.addMenu("magazine");
+                    break;
+            }
+        }
+        if (operation.equals("emprunter")) {
+            Scanner input = new Scanner(System.in);
+            Bibliotheque biblio = new Bibliotheque();
+            switch (docType) {
+                case 1:
+                    System.out.print("donner le titre du livre a emprunter: ");
+                    String livreTitre = input.nextLine();
+                    biblio.emprunter(livreTitre, "livre");
+                break;
+                case 2:
+                    System.out.print("donner le titre du magazine a emprunter: ");
+                    String magTitre = input.nextLine();
+                    biblio.emprunter(magTitre, "magazine");
+                    break;
+            }
+        }
     }
 
 }
