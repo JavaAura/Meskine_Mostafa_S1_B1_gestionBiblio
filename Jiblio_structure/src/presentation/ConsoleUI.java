@@ -35,7 +35,10 @@ public class ConsoleUI {
                     biblio.afficherTout();
                     break;
                 case 5:
-                    System.out.println("search");
+                    System.out.print("donner le titre du document a rechercher: ");
+                    input.nextLine();
+                    String titre = input.nextLine();
+                    biblio.rechercher(titre);
                     break;
                 case 6:
                     return;
@@ -68,6 +71,10 @@ public class ConsoleUI {
 
             System.out.print("1.titre du livre: ");
             String titre = input.nextLine();
+            if (!check.isValidTitle(titre)){
+                System.out.println("titre du livre invalid!");
+                return;
+            }
             livre.setTitre(titre);
 
             System.out.print("2.ISBN: ");
@@ -77,6 +84,10 @@ public class ConsoleUI {
 
             System.out.print("3.nom de l'auteur: ");
             String auteur = input.nextLine();
+            if (!check.isValidName(auteur)){
+                System.out.println("nom de l'auteur invalid!");
+                return;
+            }
             livre.setAuteur(auteur);
 
             System.out.print("4.date de publication: ");
@@ -96,15 +107,23 @@ public class ConsoleUI {
 
             System.out.print("1.titre du magazine: ");
             String titre = input.nextLine();
+            if (!check.isValidTitle(titre)){
+                System.out.println("nom du magazine invalid!");
+                return;
+            }
             magazine.setTitre(titre);
 
-            System.out.print("2.numero de magazine: ");
+            System.out.print("2.numero du magazine: ");
             int numero = input.nextInt();
             magazine.setNumero(numero);
             input.nextLine();
 
             System.out.print("3.nom de l'auteur: ");
             String auteur = input.nextLine();
+            if (!check.isValidName(auteur)){
+                System.out.println("nom du magazine invalid!");
+                return;
+            }
             magazine.setAuteur(auteur);
 
             System.out.print("4.date de publication: ");
