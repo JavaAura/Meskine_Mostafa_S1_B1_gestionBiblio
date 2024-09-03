@@ -58,6 +58,48 @@ public class Bibliotheque {
         }
     }
 
+    public void retourner(String titre, String type) {
+        if (type.equals("livre")) {
+            if (!livres.isEmpty()) {
+                for (int i = 0; i < livres.size(); i++) {
+                    if ((livres.get(i)).getTitre().equals(titre)) {
+                        if (!(livres.get(i)).isBorrowed()) {
+                            System.out.println("borrow this book first to return it!");
+                        } else {
+                            (livres.get(i)).setBorrowed(false);
+                            System.out.println("book returned successfully!");
+                        }
+                        break;
+                    }
+                    if (i == (livres.size() - 1)) {
+                        System.out.println("no book found by this title!");
+                    }
+                }
+            } else {
+                System.out.println("add some books first!");
+            }
+        } else {
+            if (!magazines.isEmpty()) {
+                for (int i = 0; i < magazines.size(); i++) {
+                    if ((magazines.get(i)).getTitre().equals(titre)) {
+                        if (!(magazines.get(i)).isBorrowed()) {
+                            System.out.println("borrow this magazine first to return it!");
+                        } else {
+                            (magazines.get(i)).setBorrowed(false);
+                            System.out.println("magazine returned successfully!");
+                        }
+                        break;
+                    }
+                    if (i == (magazines.size() - 1)) {
+                        System.out.println("no magazine found by this title!");
+                    }
+                }
+            } else {
+                System.out.println("add some magazines first!");
+            }
+        }
+    }
+
     public void afficherTout() {
         for (int i = 0; i < livres.size(); i++) {
             System.out.println(livres.get(i));

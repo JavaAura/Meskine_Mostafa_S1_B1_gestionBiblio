@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Livre extends Document {
     private int ISBN;
 
-    public void emprunter(String titre){
+    public void emprunter(){
 
     }
     public void retourner(){
@@ -27,7 +27,7 @@ public class Livre extends Document {
     @Override
     public String toString() {
         return "Livre{" +
-                "ISBN=" + ISBN +
-                "} " + super.toString();
+                "ISBN=" + ISBN + super.toString()+
+                "} " ;
     }
 }

@@ -9,7 +9,7 @@ public class Magazine extends Document{
     public void ajouter(){
 
     }
-    public void emprunter(String titre){
+    public void emprunter(){
 
     }
     public void retourner(){

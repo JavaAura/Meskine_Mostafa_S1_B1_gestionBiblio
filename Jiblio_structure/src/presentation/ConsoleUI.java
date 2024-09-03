@@ -3,8 +3,10 @@ package presentation;
 import metier.Bibliotheque;
 import metier.Livre;
 import metier.Magazine;
+import utilitaire.Validation;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 public class ConsoleUI {
     public ConsoleUI() {
@@ -26,6 +28,8 @@ public class ConsoleUI {
                     break;
                 case 3:
                     this.typeMenu("Retourner");
+                    int retournerType = input.nextInt();
+                    this.documentType(retournerType, "retourner");
                     break;
                 case 4:
                     biblio.afficherTout();
@@ -50,14 +54,15 @@ public class ConsoleUI {
     }
 
     public void typeMenu(String action) {
-        System.out.println("1."+ action +" un Livre");
-        System.out.println("2."+ action +" un Magazine");
+        System.out.println("1." + action + " un Livre");
+        System.out.println("2." + action + " un Magazine");
         System.out.print("=> ");
     }
 
     public void addMenu(String type) {
         Scanner input = new Scanner(System.in);
         Bibliotheque biblio = new Bibliotheque();
+        Validation check = new Validation();
         if (type.equals("livre")) {
             Livre livre = new Livre();
 
@@ -82,6 +87,8 @@ public class ConsoleUI {
             int nombreDePages = input.nextInt();
             livre.setNombreDePages(nombreDePages);
             livre.setBorrowed(false);
+            livre.setId(UUID.randomUUID());
+
 
             biblio.ajouter(livre);
         } else {
@@ -108,12 +115,15 @@ public class ConsoleUI {
             int nombreDePages = input.nextInt();
             magazine.setNombreDePages(nombreDePages);
             magazine.setBorrowed(false);
+            magazine.setId(UUID.randomUUID());
 
             biblio.ajouter(magazine);
         }
     }
 
     public void documentType(int docType, String operation) {
+        Scanner input = new Scanner(System.in);
+        Bibliotheque biblio = new Bibliotheque();
         if (operation.equals("ajouter")) {
             switch (docType) {
                 case 1:
@@ -123,20 +133,30 @@ public class ConsoleUI {
                     this.addMenu("magazine");
                     break;
             }
-        }
-        if (operation.equals("emprunter")) {
-            Scanner input = new Scanner(System.in);
-            Bibliotheque biblio = new Bibliotheque();
+        } else if (operation.equals("emprunter")) {
             switch (docType) {
                 case 1:
                     System.out.print("donner le titre du livre a emprunter: ");
                     String livreTitre = input.nextLine();
                     biblio.emprunter(livreTitre, "livre");
-                break;
+                    break;
                 case 2:
                     System.out.print("donner le titre du magazine a emprunter: ");
                     String magTitre = input.nextLine();
                     biblio.emprunter(magTitre, "magazine");
+                    break;
+            }
+        } else {
+            switch (docType) {
+                case 1:
+                    System.out.print("donner le titre du livre a retourner: ");
+                    String livreTitre = input.nextLine();
+                    biblio.retourner(livreTitre, "livre");
+                    break;
+                case 2:
+                    System.out.print("donner le titre du magazine a retourner: ");
+                    String magTitre = input.nextLine();
+                    biblio.retourner(magTitre, "magazine");
                     break;
             }
         }
