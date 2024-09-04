@@ -99,7 +99,6 @@ public class ConsoleUI {
 
             int numero = this.getIntInput(input, "2.numero du magazine: ");
             magazine.setNumero(numero);
-            input.nextLine();
 
             String auteur = this.getStringInput(input, "3.nom de l'auteur: ");
             magazine.setAuteur(auteur);
