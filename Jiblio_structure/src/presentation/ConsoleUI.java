@@ -17,32 +17,33 @@ public class ConsoleUI {
             Scanner input = new Scanner(System.in);
             int choix = input.nextInt();
             switch (choix) {
-                case 1:
+                case 1 -> {
                     this.typeMenu("Ajouter");
                     int ajouterType = input.nextInt();
                     this.documentType(ajouterType, "ajouter");
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     this.typeMenu("Emprunter");
                     int emprunterType = input.nextInt();
                     this.documentType(emprunterType, "emprunter");
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     this.typeMenu("Retourner");
                     int retournerType = input.nextInt();
                     this.documentType(retournerType, "retourner");
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     biblio.afficherTout();
-                    break;
-                case 5:
+                }
+                case 5 -> {
                     System.out.print("donner le titre du document a rechercher: ");
                     input.nextLine();
                     String titre = input.nextLine();
                     biblio.rechercher(titre);
-                    break;
-                case 6:
+                }
+                case 6 -> {
                     return;
+                }
             }
         }
     }
