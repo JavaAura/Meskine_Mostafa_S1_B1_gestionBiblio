@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Jiblio_structure:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Jiblio_structure_jar</output-path>
+    <root id="archive" name="Jiblio_structure.jar">
+      <element id="module-output" name="Jiblio_structure" />
+    </root>
+  </artifact>
+</component>
