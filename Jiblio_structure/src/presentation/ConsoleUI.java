@@ -66,7 +66,7 @@ public class ConsoleUI {
     public void addMenu(String type) {
         Scanner input = new Scanner(System.in);
         Bibliotheque biblio = new Bibliotheque();
-//        Validation check = new Validation();
+
         if (type.equals("livre")) {
             Livre livre = new Livre();
 
@@ -79,8 +79,6 @@ public class ConsoleUI {
             String auteur = this.getStringInput(input, "3.nom de l'auteur: ");
             livre.setAuteur(auteur);
 
-//            System.out.print("4.date de publication: ");
-//            String date = input.nextLine();
             String date = this.getDateInput(input);
             livre.setDatePublication(date);
 
@@ -98,8 +96,6 @@ public class ConsoleUI {
             String titre = this.getStringInput(input, "1.titre du magazine: ");
             magazine.setTitre(titre);
 
-//            System.out.print("2.numero du magazine: ");
-//            int numero = input.nextInt();
             int numero = this.getIntInput(input, "2.numero du magazine: ");
             magazine.setNumero(numero);
             input.nextLine();
@@ -107,11 +103,8 @@ public class ConsoleUI {
             String auteur = this.getStringInput(input, "3.nom de l'auteur: ");
             magazine.setAuteur(auteur);
 
-//            System.out.print("4.date de publication: ");
-//            String date = input.nextLine();
             String date = this.getDateInput(input);
             magazine.setDatePublication(date);
-
 
             int nombreDePages = this.getIntInput(input, "5.nombre de pages: ");
             magazine.setNombreDePages(nombreDePages);
